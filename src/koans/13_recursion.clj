@@ -15,17 +15,14 @@
     coll
     (let [f (first coll)
           r (rest coll)]
-          (println f)
-          (println r)
       (concat (recursive-reverse r) [f]))))
 
 (defn factorial [n]
-  (if (< n 2)
-    1
-    (let [ret (* n (factorial (dec n)))]
-      (if (> ret 0)
-        ret
-        0))))
+  (loop [n   n
+         acc 1]
+    (if (< n 2)
+      acc
+      (recur (dec n) (* n acc)))))
 
 (meditations
   "Recursion ends with a base case"
